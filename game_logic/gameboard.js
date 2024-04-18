@@ -30,8 +30,21 @@ export default class Gameboard {
     recieveAttack (x, y) {
         this.shots.push([x, y]);
 
-        if (!this.shipCoordinates.includes([x, y])) {
-            return 'miss';
-        } else return 'hit';
+        
+    }
+
+    //helper function: how coordinates are found
+    //search: coordinates being searched for
+    //source: array being searched through
+    findCoordinates (search, source) {
+        for (let i = 0; i < source.length; i++) {
+            if (
+                source[i][0] == search[0]&& //x coordinate
+                source[i][1] == search[1] //y coordinate
+            ) {
+                return true; //found
+            } 
+        }
+        return false; //not found
     }
 }
