@@ -3,7 +3,7 @@ import Ship from "./ship";
 export default class Gameboard {
     constructor() {
         this.allShipsSunk = false;
-        this.ships = []; //objects
+        this.ships = []; //objects (index represents ship's)
         this.shipCoordinates = []; //coordinates
         this.shots = []; //coordinates
     }
@@ -30,7 +30,10 @@ export default class Gameboard {
     recieveAttack (x, y) {
         this.shots.push([x, y]);
 
-        
+        if (this.findCoordinates([x, y], this.shipCoordinates)) {
+            return "hit";
+        } 
+        else return "miss";
     }
 
     //helper function: how coordinates are found
@@ -39,8 +42,8 @@ export default class Gameboard {
     findCoordinates (search, source) {
         for (let i = 0; i < source.length; i++) {
             if (
-                source[i][0] == search[0]&& //x coordinate
-                source[i][1] == search[1] //y coordinate
+                source[i].x == search.x && //x coordinate
+                source[i].y == search.y //y coordinate
             ) {
                 return true; //found
             } 
