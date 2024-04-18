@@ -1,3 +1,5 @@
-export default function ships (length) {
-
+export default class ship {
+    constructor(length) {
+        this.length = length;
+    }
 }
