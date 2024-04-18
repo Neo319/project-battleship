@@ -10,9 +10,10 @@ describe('gameboard functionality', () => {
     const myBoard = new Gameboard;
 
     //place ship at a coordinate
-    test.only('can place ships', () => {
+    test('can place ships', () => {
         myBoard.placeShip(0, 0, 2, true);
-        expect(myBoard.ships).toHaveLength(1);
+        console.log(myBoard.shipCoordinates)
+        expect(myBoard.shipCoordinates).toHaveLength(2); // 2 spaces are covered
     });
 
     test('can recieve missing attacks', () => {
