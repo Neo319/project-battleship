@@ -13,12 +13,14 @@ describe('gameboard functionality', () => {
     test('can place ships', () => {
         myBoard.placeShip(0, 0, 2, true);
         console.log(myBoard.shipCoordinates)
-        expect(myBoard.shipCoordinates).toHaveLength(2); // 2 spaces are covered
+        expect(myBoard.shipCoordinates).toEqual([[0, 0], [0, 1]])
     });
 
     test('can recieve missing attacks', () => {
-        expect(myBoard.recieveAttack(5, 5)).toBe('miss') && //returns 'miss'  to indicate
-        expect(myBoard.shots).toHaveLength(1);
+        expect(myBoard.recieveAttack(5, 5)).toBe('miss') && //returns 'miss' to indicate
+        console.log('hello')
+        console.log(JSON.stringify(myBoard));
+        expect(myBoard.shots).toEqual([[5, 5]]);
     });
 
     test('can recieve hit attacks', () => {

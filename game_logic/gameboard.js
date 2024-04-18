@@ -3,9 +3,9 @@ import Ship from "./ship";
 export default class Gameboard {
     constructor() {
         this.allShipsSunk = false;
-        this.ships = []; //array of objects
-        this.shipCoordinates = []; //array of coordinates
-        this.shots = []; //array of coordinates
+        this.ships = []; //objects
+        this.shipCoordinates = []; //coordinates
+        this.shots = []; //coordinates
     }
 
     //using inputted coordinates as the top/ leftmost space; isVertical is boolean, else horizontal
@@ -25,5 +25,13 @@ export default class Gameboard {
                 this.shipCoordinates.push([(x + i), y]);
             }
         }
+    }
+
+    recieveAttack (x, y) {
+        this.shots.push([x, y]);
+
+        if (!this.shipCoordinates.includes([x, y])) {
+            return 'miss';
+        } else return 'hit';
     }
 }
