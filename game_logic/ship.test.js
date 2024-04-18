@@ -1,33 +1,42 @@
-import ship from "./ship";
+import Ship from "./Ship";
 
 
 describe ('starting up', () => {
     
     // first steps 
-    test('ship exists', () => {
-        expect(ship).toBeDefined()
+    test('Ship exists', () => {
+        expect(Ship).toBeDefined()
     });
 
-    test('ship can be created', () => {
-        expect(new ship(2)).toBeInstanceOf(Object)
+    test('Ship can be created', () => {
+        expect(new Ship(2)).toBeInstanceOf(Object)
     });
 
     test('length can be assigned', () => {
-        expect(new ship(2).length).toBe(2) &&
-        expect(new ship(5).length).toBe(5)
+        expect(new Ship(2).length).toBe(2) &&
+        expect(new Ship(5).length).toBe(5)
     });
 
 });
 
-// describe ('functionality', () => {
+describe ('functionality', () => {
+    const myShip = new Ship(3);
+    myShip.hit();
+    myShip.hit();
     
-//     //hit ship & get times hit
-//     test ('hit ship one time', () => {
+    test ('hit ship and get times hit', () => {
+        expect(myShip.timesHit).toBe(2);
+    })
 
-//         expect()
-//     })
+    test ('ship is not sunk after being hit', () => { 
+        expect(myShip.sunk).toBe(false);
+    })
     
-//     //sink ship & get isSunk
+    //sink Ship & get isSunk
+    test ('sink Ship & get isSunk', () => {
+        myShip.hit();
+        expect (myShip.sunk).toBe(true);
+    })
     
-// })
+})
 
