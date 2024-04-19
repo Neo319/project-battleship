@@ -48,6 +48,9 @@ export default class GameBoard {
 
 
     recieveAttack(x, y) {
-        
+        if (this.board[x][y] == 1) {
+            this.board[x][y] = 3
+        } else 
+        this.board[x][y] = 2
     }
 }
