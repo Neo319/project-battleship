@@ -5,4 +5,6 @@ export default class Player {
         this.type = type; // 1 = player, 2= CPU
         this.board = new GameBoard()
     }
+
+    
 }
