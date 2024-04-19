@@ -40,6 +40,8 @@ describe('recieveAttack logic', () => {
     it("records shot coordinates when missed", () => {
         myBoard.recieveAttack(5, 5);
         expect(myBoard.board[5][5]).toEqual(2) //2 represents missed shot
+        console.log(JSON.stringify(myBoard.ships))
+        console.log(JSON.stringify(myBoard.board))
     })
     it("represents hit shot on the board", () => {
         myBoard.recieveAttack(0, 0);

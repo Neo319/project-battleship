@@ -23,34 +23,64 @@ export default class GameBoard {
 
     //simpler calling 
     placeShipVertical (x, y, length) {
-        this.placeShip(x, y, length, true);
+        this._placeShip(x, y, length, true);
     }
     placeShipHorizontal (x, y, length) {
-        this.placeShip(x, y, length, false);
+        this._placeShip(x, y, length, false);
     }
 
 
-    placeShip(x, y, length, isVertical) {
+    _placeShip(x, y, length, isVertical) {
         const newShip = new Ship (length);
         this.ships.push(newShip);
 
         //update board array to contain ship
         if (isVertical) { // iterate vertically to represent ship's spaces
             for (let i = 0; i < length; i++) {
+                //update board data
                 this.board[x][y+i] = 1;
+
+                //update ship data
+                const newShipCoords = {};
+                newShipCoords.x = x;
+                newShipCoords.y = y + i;       
+                newShip.coordinates.push(newShipCoords);       
             } 
         } else { // iterate horizontally
             for (let i = 0; i < length; i++) {
+                //update board data
                 this.board[x+i][y] = 1;
+
+                //update ship data
+                const newShipCoords = {};
+                newShipCoords.x = x + i;
+                newShipCoords.y = y
+                newShip.coordinates.push(newShipCoords);
             } 
         }
     }
 
 
     recieveAttack(x, y) {
-        if (this.board[x][y] == 1) {
-            this.board[x][y] = 3
+        if (this.board[x][y] == 1) { 
+            this.board[x][y] = 3; //shot is hit
+            this._hitShip(x,y);
         } else 
-        this.board[x][y] = 2
+        this.board[x][y] = 2; //shot misses
     }
+
+    _hitShip (x, y) { // finds and hits the ship at the specified coordinates
+        //iterate through all ships, seeking matching x and y coordinates
+        for (const ship of this.ships) {
+            //iterate through coordinates of current ship
+            for (const coord of ship.coordinates) {
+                if (coord.x === x && coord.y === y) {
+                    ship.hit();
+                    return ship;
+                }
+            }
+        }
+        throw new Error ("trying to hit ship in wrong location");
+    }
+
 }

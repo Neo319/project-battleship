@@ -3,6 +3,7 @@ export default class Ship {
         this.length = length;
         this.timesHit = 0;
         this.sunk = false;
+        this.coordinates = [] //assigned from gameBoard
     }
 
     hit () {
