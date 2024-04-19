@@ -10,7 +10,8 @@ myBoard.placeShipVertical(0, 0, 2);
 
 
 //board contains ship
-test('board contains ship', () => {
+test.only('board contains ship', () => {
+    console.log(JSON.stringify(myBoard.board))
     expect(myBoard.ships).toHaveLength(1)
 })
 
