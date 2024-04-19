@@ -27,19 +27,24 @@ describe('gameboard functionality', () => {
     //ship of length 2 placed vertically at top-left corner of the board
     myBoard.placeShip(0, 0, 2, true);
 
-    test.only('placed ship can be found as object', () => {
-        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 0}))
+    test('placed ship can be found as array item with coordinate objects', () => {
+        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 0})).toBe(true)
+    })
+
+    test.only ('placed ship found at 0, 1', () => {
+        console.log(JSON.stringify(myBoard.shipCoordinates));
+        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 1}))
     })
 
     test('can recieve missing attacks', () => {
         expect(myBoard.recieveAttack(5, 5)).toBe('miss') && //returns 'miss' to indicate
-        expect(myBoard.shots).toEqual([[5, 5]]);
+        expect(myBoard.shots).toEqual([{x: 5, y: 5, isHit: false}]);
     });
 
     myBoard.recieveAttack(0, 0);
 
     test('hit attacks recieved in array', () =>{
-        expect(myBoard.shots).toContainEqual([0, 0]);
+        expect(arrayContainsObject(myBoard.shots, {x: 0, y: 0, isHit: true})).toBe(true);
     });
 
     test('hit attacks return true', () => {
@@ -49,9 +54,8 @@ describe('gameboard functionality', () => {
 });
 
 test('coordinate searching logic works', () => {
-    console.log(JSON.stringify(myBoard));
-    const arraySearched = [{x: 1, y: 0}, {x: 1, y:1}]
-    const search = {x: 1, y: 1}
+    const arraySearched = [{x: 1, y: 0}, {x: 1, y:1}];
+    const search = {x: 1, y: 1};
 
     expect(myBoard.findCoordinates(search, arraySearched)).toBe(true)
 })

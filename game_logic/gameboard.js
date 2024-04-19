@@ -15,15 +15,16 @@ export default class Gameboard {
         //add ship object to array
         this.ships.push(newShip);
 
+
+        //initializing array representing ship coordinates
+        this.shipCoordinates.push([]); 
+
         //track ship coordinates
         for (let i = 0; i < length; i++) {
             
             //iterate through coordinates taken up by the ship, adding all to array
             //each ship has an array containing objects representing its coordinates
             //array is indexed to the ships through index of shipCoordinates array
-            
-            this.shipCoordinates.push([]); //initializing array representing ship coordinates
-
             const newShipIndex = this.shipCoordinates.length -1;
             if (isVertical) {
                 this.shipCoordinates[newShipIndex].push({x: x, y: (y + i)});
@@ -34,12 +35,16 @@ export default class Gameboard {
     }
 
     recieveAttack (x, y) {
-        this.shots.push([x, y]);
+        
 
-        if (this.findCoordinates([x, y], this.shipCoordinates)) {
+        if (this.findCoordinates({x: x, y: y}, this.shipCoordinates)) {
+            this.shots.push({x: x, y: y, isHit: true});
             return "hit";
         } 
-        else return "miss";
+        else {
+            this.shots.push({x: x, y: y, isHit: false});
+            return "miss";
+        }
     }
 
     //helper function: how coordinates are found
