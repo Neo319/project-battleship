@@ -1,19 +1,35 @@
 import Gameboard from "./gameboard";
-import Ship from "./ship";
+
+const arrayContainsObject = function (state, argument) {
+    expect(state).toEqual(          // 1
+        expect.arrayContaining([      // 2
+            expect.objectContaining(argument)
+        ])
+    )
+}
+
 
 //first steps
 test('gameboard exists', () => {
     expect(Gameboard).toBeDefined() 
 });
+
+// how coordinates are found: coordinates represented as objects
+test('arrayContainsObject test', () => {
+    const testArrObj = [{one: 1}]
+    expect(arrayContainsObject(testArrObj, {one: 1}))
+})
+
 const myBoard = new Gameboard;
 
 describe('gameboard functionality', () => {
 
-    //place ship at a coordinate
-    test('can place ships', () => {
-        myBoard.placeShip(0, 0, 2, true);
-        expect(myBoard.shipCoordinates).toEqual([[0, 0], [0, 1]])
-    });
+    //ship of length 2 placed vertically at top-left corner of the board
+    myBoard.placeShip(0, 0, 2, true);
+
+    test.only('placed ship can be found as object', () => {
+        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 0}))
+    })
 
     test('can recieve missing attacks', () => {
         expect(myBoard.recieveAttack(5, 5)).toBe('miss') && //returns 'miss' to indicate
@@ -32,7 +48,7 @@ describe('gameboard functionality', () => {
 
 });
 
-test.only('coordinate searching logic works', () => {
+test('coordinate searching logic works', () => {
     console.log(JSON.stringify(myBoard));
     const arraySearched = [{x: 1, y: 0}, {x: 1, y:1}]
     const search = {x: 1, y: 1}

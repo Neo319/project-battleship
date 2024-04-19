@@ -3,9 +3,9 @@ import Ship from "./ship";
 export default class Gameboard {
     constructor() {
         this.allShipsSunk = false;
-        this.ships = []; //objects (index represents ship's)
-        this.shipCoordinates = []; //coordinates
-        this.shots = []; //coordinates
+        this.ships = [];            //ship objects 
+        this.shipCoordinates = [];  //coordinates objects
+        this.shots = [];            //coordinates objects
     }
 
     //using inputted coordinates as the top/ leftmost space; isVertical is boolean, else horizontal
@@ -13,16 +13,22 @@ export default class Gameboard {
         const newShip = new Ship(length);
 
         //add ship object to array
-        this.ships += (newShip);
+        this.ships.push(newShip);
 
         //track ship coordinates
         for (let i = 0; i < length; i++) {
             
-            // iterate through coordinates taken up by the ship, adding all to array
+            //iterate through coordinates taken up by the ship, adding all to array
+            //each ship has an array containing objects representing its coordinates
+            //array is indexed to the ships through index of shipCoordinates array
+            
+            this.shipCoordinates.push([]); //initializing array representing ship coordinates
+
+            const newShipIndex = this.shipCoordinates.length -1;
             if (isVertical) {
-                this.shipCoordinates.push([x, (y + i)]);
+                this.shipCoordinates[newShipIndex].push({x: x, y: (y + i)});
             } else {
-                this.shipCoordinates.push([(x + i), y]);
+                this.shipCoordinates[newShipIndex].push({x: (x + i), y: y});
             }
         }
     }
