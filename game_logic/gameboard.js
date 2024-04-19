@@ -36,14 +36,21 @@ export default class Gameboard {
 
     recieveAttack (x, y) {
         
+        // //check whether ship is found in attacked square
+        // if (this.findCoordinates({x: x, y: y}, this.shipCoordinates)) {
+        //     this.shots.push({x: x, y: y, isHit: true});
+        //     return "hit";
+        // } 
+        // else {
+        //     this.shots.push({x: x, y: y, isHit: false});
+        //     return "miss";
+        // }
 
-        if (this.findCoordinates({x: x, y: y}, this.shipCoordinates)) {
-            this.shots.push({x: x, y: y, isHit: true});
-            return "hit";
-        } 
-        else {
-            this.shots.push({x: x, y: y, isHit: false});
-            return "miss";
+        //check whether ship is found in attacked square
+        for (const shipCoords of this.shipCoordinates) {
+            if (this.findCoordinates({x: x, y: y}, shipCoords)) {
+                //ship coordinates are found
+            }
         }
     }
 

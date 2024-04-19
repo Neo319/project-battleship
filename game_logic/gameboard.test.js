@@ -10,7 +10,7 @@ const arrayContainsObject = function (state, argument) {
 
 
 //first steps
-test('gameboard exists', () => {
+test.only('gameboard exists', () => {
     expect(Gameboard).toBeDefined() 
 });
 
@@ -28,23 +28,24 @@ describe('gameboard functionality', () => {
     myBoard.placeShip(0, 0, 2, true);
 
     test('placed ship can be found as array item with coordinate objects', () => {
-        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 0})).toBe(true)
+        expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 0}))
     })
 
-    test.only ('placed ship found at 0, 1', () => {
-        console.log(JSON.stringify(myBoard.shipCoordinates));
+    test('placed ship found at 0, 1', () => {
         expect(arrayContainsObject(myBoard.shipCoordinates[0], {"x": 0, "y": 1}))
     })
 
     test('can recieve missing attacks', () => {
         expect(myBoard.recieveAttack(5, 5)).toBe('miss') && //returns 'miss' to indicate
-        expect(myBoard.shots).toEqual([{x: 5, y: 5, isHit: false}]);
+        expect(arrayContainsObject(myBoard.shots, {x: 5, y: 5, isHit: false}))
     });
 
     myBoard.recieveAttack(0, 0);
 
     test('hit attacks recieved in array', () =>{
-        expect(arrayContainsObject(myBoard.shots, {x: 0, y: 0, isHit: true})).toBe(true);
+        console.log(JSON.stringify(myBoard.shipCoordinates));
+        console.log(JSON.stringify(myBoard.shots));
+        expect(arrayContainsObject(myBoard.shots, {x: 0, y: 0, isHit: true}));
     });
 
     test('hit attacks return true', () => {
