@@ -25,15 +25,29 @@ export default class GameBoard {
     placeShipVertical (x, y, length) {
         this.placeShip(x, y, length, true);
     }
-    placeShiptHorizontal (x, y, length) {
+    placeShipHorizontal (x, y, length) {
         this.placeShip(x, y, length, false);
     }
 
 
     placeShip(x, y, length, isVertical) {
-        const newShip = new Ship (length)
-        this.ships.push(newShip)
+        const newShip = new Ship (length);
+        this.ships.push(newShip);
 
-        //update board coordinates to contain ship
+        //update board array to contain ship
+        if (isVertical) { // iterate vertically to represent ship's spaces
+            for (let i = 0; i < length; i++) {
+                this.board[x][y+i] = 1;
+            } 
+        } else { // iterate horizontally
+            for (let i = 0; i < length; i++) {
+                this.board[x+i][y] = 1;
+            } 
+        }
+    }
+
+
+    recieveAttack(x, y) {
+        
     }
 }
