@@ -29,8 +29,11 @@ describe('recieveAttack logic', () => {
         myBoard.recieveAttack(5, 5);
         expect(myBoard.board[5][5]).toEqual(2) //2 represents missed shot
     })
-    it("calls hit() on a ship when shot hits", () => {
+    it("represents hit shot on the board", () => {
         myBoard.recieveAttack(0, 0);
         expect(myBoard.board[0][0]).toEqual(3) //3 represents hit shot
+    })
+    it("called hit function on the ship object", () => {
+        expect(myBoard.ships[0].timesHit).toEqual(1);
     })
 }) 
