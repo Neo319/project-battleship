@@ -4,7 +4,7 @@ export default class GameBoard {
     constructor () {
         this.board = this.generateBoard(); //2D array 
         this.ships = []; //array containing ship objects
-        this.allShipsSunk = false
+        this.allShipsSunk = false;
     }
 
     generateBoard () {
@@ -17,10 +17,6 @@ export default class GameBoard {
         }
         return board;
     }
-
-
-
-
 
     //simpler calling 
     placeShipVertical (x, y, length) {
@@ -77,11 +73,24 @@ export default class GameBoard {
             for (const coord of ship.coordinates) {
                 if (coord.x === x && coord.y === y) {
                     ship.hit();
+                    this._updateAllShipsSunk();
                     return ship;
                 }
             }
         }
         throw new Error ("trying to hit ship in wrong location");
+    }
+
+    //checks whether all ships or sunk and assigns property
+    _updateAllShipsSunk () {
+        for (const ship of this.ships) {
+            if (ship.sunk === false) {
+                return false;
+            }
+        }
+        //all ships are sunk
+        this.allShipsSunk = true;
+        return true;
     }
 
 }
