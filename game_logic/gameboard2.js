@@ -4,6 +4,7 @@ export default class GameBoard {
     constructor () {
         this.board = this.generateBoard(); //2D array 
         this.ships = []; //array containing ship objects
+        this.allShipsSunk = false
     }
 
     generateBoard () {

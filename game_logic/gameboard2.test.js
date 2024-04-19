@@ -50,4 +50,22 @@ describe('recieveAttack logic', () => {
     it("called hit function on the ship object", () => {
         expect(myBoard.ships[0].timesHit).toEqual(1);
     })
+    it("calls hit function on the correect ship object", () => {
+        myBoard.recieveAttack(9, 9);
+        expect(myBoard.ships[1].timesHit).toEqual(1);
+    })
+    it("calls multiple hits on ships", () => {
+        myBoard.recieveAttack(8, 9);
+        expect(myBoard.ships[1].timesHit).toEqual(2);
+    })
+    it("can sink ships", () => {
+        myBoard.recieveAttack(7, 9);
+        myBoard.recieveAttack(6, 9);
+        myBoard.recieveAttack(5, 9);
+        expect(myBoard.ships[1].sunk).toBe(true);
+    })
+    it('can sink all ships', () => {
+        myBoard.recieveAttack(0, 1);
+        expect(myBoard.allShipsSunk).toBe(true);
+    })
 }) 
