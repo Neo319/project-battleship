@@ -35,15 +35,11 @@ describe('recieveAttack logic', () => {
         expect(myBoard.board[0][1]).toEqual(1)
     })
     it("represents a ship of length 5 horizontally", () => {
-        console.log(myBoard.ships.length)
         myBoard.placeShipHorizontal(5, 9, 5);
         expect(myBoard.board[5][9]).toEqual(1)
-
-        //cleanup
-        myBoard.ships = [];
     })
     it('represents both ends of horizontal ship', () => {
-        console.log(myBoard.ships.length)
+        myBoard.placeShipHorizontal(5, 9, 5);
         expect(myBoard.board[9][9]).toEqual(1);
     })
     
@@ -81,7 +77,13 @@ describe('recieveAttack logic', () => {
         expect(myBoard.ships[1].sunk).toBe(true);
     })
     it('can sink all ships', () => {
+        myBoard.placeShipHorizontal(8, 0, 2);
+
+        myBoard.recieveAttack(0, 0);
         myBoard.recieveAttack(0, 1);
+
+        myBoard.recieveAttack(8, 0);
+        myBoard.recieveAttack(9, 0);
         expect(myBoard.allShipsSunk).toBe(true);
     })
 }) 
