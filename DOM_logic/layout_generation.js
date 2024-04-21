@@ -86,11 +86,12 @@ export default function layoutGenerator (playerObj) {
     //used to check if spaces are empty
     function allAreZero (arr) {
         for (let item of arr) {
-            if (item != 0) {
+            if (item !== 0) {
                 return false;
             }
-            return true;
+
         }
+        return true;
 
     }
     console.log(playerObj.board.board); //verification
