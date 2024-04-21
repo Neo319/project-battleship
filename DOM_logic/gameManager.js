@@ -34,6 +34,7 @@ const gameManager = function (player, cpu) {
         //check if game is over
         if (cpu.board.allShipsSunk) {
             console.log("cpu all ships sunk");
+            highlightMessageLocation.textContent = "PLAYER WINS!"
             return "Player" //player wins
         }
 
@@ -62,6 +63,7 @@ const gameManager = function (player, cpu) {
         //check if game is over
         if (player.board.allShipsSunk) {
             console.log("player all ships sunk");
+            highlightMessageLocation.textContent = "CPU WINS";
             return "CPU" //CPU wins
         }
 
