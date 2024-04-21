@@ -5,7 +5,7 @@ const gameManager = function (player, cpu) {
 
     //initial game setup
 
-    
+    const highlightMessageLocation = document.getElementById("highlightMessageCPU");
 
     const playerBoardAddress = document.getElementById("playerBoard");
     const cpuBoardAddress = document.getElementById("cpuBoard");
@@ -39,12 +39,18 @@ const gameManager = function (player, cpu) {
 
 
         //time out -> generate cpu move (promise)
-        console.log("cpu generating...")
+        highlightMessageLocation.textContent = "cpu generating...";
+
         
         
         
         const response = await _generateCPUMove ();
-        console.log("cpu plays:")
+
+        const CPUmessageY = String.fromCharCode(65 + response.y);
+
+
+        highlightMessageLocation.textContent = "cpu plays: " +  CPUmessageY + ", " + (response.x + 1)
+
         console.log(response);
 
         //play cell on player board

@@ -1,13 +1,14 @@
 body {
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #f1f2f3
 }
 
 /* flex container for board display elements */
 #boards {
-    border: 1px solid red;
     width: 100%;
     height: auto;
+    padding-bottom: 100px;
 
     display: flex;
     flex-flow: column;
@@ -16,7 +17,7 @@ body {
     align-items: center;
 
 
-    padding-bottom: 30px;
+
 }
 
 /* board dispaly divs */
@@ -41,10 +42,11 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 #buttons * {
-    padding: 0.6em;
+    padding: 0.8em;
 }
 #buttons *.active:hover {
     filter:brightness(70%);
@@ -88,7 +90,7 @@ body {
 
 
 /* Player highlight info displayer */
-#highlightMessage, #highlightMessageCPU {
+#highlightMessage {
     color: gray;
     font-style: italic;
 
