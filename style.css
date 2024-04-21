@@ -7,7 +7,7 @@ body {
 #boards {
     border: 1px solid red;
     width: 100%;
-    height: 90vh;
+    height: auto;
 
     display: flex;
     flex-flow: column;
@@ -16,7 +16,7 @@ body {
     align-items: center;
 
 
-    padding-bottom: 35px;
+    padding-bottom: 30px;
 }
 
 /* board dispaly divs */
@@ -74,7 +74,7 @@ body {
 
 
 /* Player highlight info displayer */
-#highlightMessage {
+#highlightMessage, #highlightMessageCPU {
     color: gray;
     font-style: italic;
 

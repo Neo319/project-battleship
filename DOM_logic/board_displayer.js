@@ -7,6 +7,7 @@ export default function boardDisplayer(type, location, playerObj) {
     //'location determines to which div the board is generated'
 
     const highlightMessageLocation = document.getElementById("highlightMessage");
+    const CPUHighlightMessageLocation = document.getElementById("highlightMessageCPU")
 
     //clear the location
     location.innerHTML = '';
@@ -39,16 +40,19 @@ export default function boardDisplayer(type, location, playerObj) {
             const y = i + 1; 
 
             let playerType; 
+            let location;
 
             if (type === 1) {
                 playerType = "Player"
+                location = highlightMessageLocation;
             } else {
                 playerType = "CPU"
+                location = CPUHighlightMessageLocation;
             }
             
             
             const message = playerType + " board cell " + x + ", "+ y;
-            highlightMessageLocation.textContent = message;
+            location.textContent = message;
         })
     }
 

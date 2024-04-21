@@ -48,6 +48,7 @@ const gameManager = function () {
 
         //check if game is over
         if (cpu.board.allShipsSunk) {
+            console.log("cpu all ships sunk");
             return "Player" //player wins
         }
 
@@ -115,7 +116,7 @@ const gameManager = function () {
 
     async function _generateCPUMove () {
         return new Promise ((resolve, reject) => {
-            //wait two seconds
+            //wait for cpu "to decide"
             setTimeout(() => {
                 for (let i = 0; i < 100; i++) { //100 attempts
 
@@ -129,7 +130,7 @@ const gameManager = function () {
                             break; //end the loop if move can be made
                     }
                 }
-            }, 2000); // 2 second wait 
+            }, 1000); // 1 second wait 
         });
     }
         
