@@ -1,6 +1,6 @@
-// import gameManager from "./DOM_logic/gameManager";
-import module_test from "./module_test"
+import gameManager from "./DOM_logic/gameManager.js";
+
 
 console.log("bar");
-module_test()
+gameManager();
 
