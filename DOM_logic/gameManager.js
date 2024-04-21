@@ -1,34 +1,18 @@
-import Player from "../game_logic/player.js";
 import boardDisplayer from "./board_displayer.js";
 import layoutGenerator from "./layout_generation.js";
 
-const gameManager = function () {
-    console.log("foo");
+const gameManager = function (player, cpu) {
 
     //initial game setup
 
-    const player = new Player(1); 
-    const cpu = new Player(2);
+    
 
     const playerBoardAddress = document.getElementById("playerBoard");
     const cpuBoardAddress = document.getElementById("cpuBoard");
 
-    //to begin with, use predetermined coordinates
-    function _initialLayout(player) {
+    //generate CPU's layout
+    layoutGenerator(cpu);
 
-        player.board.placeShipVertical(2, 4, 2);
-
-        player.board.placeShipHorizontal(1, 0, 3);
-        player.board.placeShipVertical(8, 3, 3);
-
-        player.board.placeShipVertical(4, 5, 4);
-
-        player.board.placeShipHorizontal(1, 2, 5);
-
-    }
-
-    _initialLayout(player);
-    _initialLayout(cpu);
 
     boardDisplayer(1, playerBoardAddress, player);
     boardDisplayer(2, cpuBoardAddress, cpu);
@@ -136,17 +120,12 @@ const gameManager = function () {
         });
     }
         
-
     //where the game is finally initiated
-
-    // doPlayerTurn();
+    doPlayerTurn();
 
 
 
     //testing
-
-    console.log(layoutGenerator(player));
-    boardDisplayer(1, playerBoardAddress, player);
     
 
 }

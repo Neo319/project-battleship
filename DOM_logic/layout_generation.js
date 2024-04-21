@@ -4,6 +4,7 @@ export default function layoutGenerator (playerObj) {
     //"playerObj" : the player object in which the target board is stored
 
     //reset the player's board first
+
     playerObj.board.board = playerObj.board.generateBoard();
 
     //five ships: lengths of 5, 4, 3, 3, and 2
@@ -39,7 +40,6 @@ export default function layoutGenerator (playerObj) {
                 }
                 //checking spaces
                 if (allAreZero(boardSpaces)) {
-                    console.log(boardSpaces)
                     //call placeShip
                     playerObj.board.placeShipHorizontal(x, y, length)
                     break;
@@ -68,7 +68,6 @@ export default function layoutGenerator (playerObj) {
                 }
                 //checking spaces
                 if (allAreZero(boardSpaces)) {
-                    console.log(boardSpaces)
                     //call placeShip
                     playerObj.board.placeShipVertical(x, y, length)
                     break;
@@ -86,9 +85,7 @@ export default function layoutGenerator (playerObj) {
 
     //used to check if spaces are empty
     function allAreZero (arr) {
-        console.log("yes")
         for (let item of arr) {
-            console.log(item);
             if (item != 0) {
                 return false;
             }
@@ -96,15 +93,5 @@ export default function layoutGenerator (playerObj) {
         }
 
     }
-
-    console.log(playerObj.board.board)
-
-    //generate random x and y coordinates accordingly
-
-    //ensure all board spaces are empty
-
-    //call placeShip on player's gameboard
-
-
-
+    console.log(playerObj.board.board); //verification
 }
