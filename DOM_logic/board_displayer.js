@@ -4,7 +4,18 @@ export default function boardDisplayer(type, location) {
     //changing what is displayed.
     //'location determines to which div the board is generated'
 
-    location.textContent = "here!"
+
+    for (let i = 0; i < 10; i++) {
+        let row = document.createElement('div')
+        for (let j = 0; j < 10; j++) {
+            let cell = document.createElement('div')
+            cell.id = `${type} cell ${i}, ${j}`
+            cell.classList = "cell"
+            row.appendChild(cell)
+        }
+        row.classList = "row";
+        location.appendChild(row);
+    }
 
 
 }

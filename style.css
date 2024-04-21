@@ -36,3 +36,22 @@ body {
     margin-left: 10vw;
     margin-right:10vw;
 }
+
+
+/* control of individual cells  */
+.row {
+    display: flex;
+    flex-direction: row;
+
+    height: 10%
+}
+
+.cell {
+    border: 1px solid black;
+
+    height: auto;
+    width: 10%;
+    
+
+
+}
