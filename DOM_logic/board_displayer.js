@@ -1,10 +1,13 @@
 //module responsible for displaying board content to DOM
-export default function boardDisplayer(type, location) {
+export default function boardDisplayer(type, location, playerObj) {
     //board can be of type 'player' or 'cpu', 
     //changing what is displayed.
     //'location determines to which div the board is generated'
 
     const highlightMessageLocation = document.getElementById("highlightMessage");
+
+    //clear the location
+    location.innerHTML = '';
 
     for (let i = 0; i < 10; i++) {
         let row = document.createElement('div')
@@ -13,9 +16,12 @@ export default function boardDisplayer(type, location) {
             cell.id = `${type} cell ${i}, ${j}`
             cell.classList = "cell"
 
-            addMessageListener(cell, i, j)
+            //do stuff on individual cells
+            addMessageListener(cell, i, j);
+            displayBoardContent(cell, i, j);
 
-            row.appendChild(cell)
+
+            row.appendChild(cell, i, j)
         }
         row.classList = "row";
         location.appendChild(row);
@@ -39,4 +45,19 @@ export default function boardDisplayer(type, location) {
             highlightMessageLocation.textContent = message;
         })
     }
+
+    function displayBoardContent (cell, i, j) {
+        //this function runs on each cell and updates classList 
+        //to reflect the content of the gameboard
+
+        //data of cell at player's board
+        const cellData = playerObj.board.board[i][j];
+
+        //ship
+        if (cellData === 1) {
+            cell.classList.add("ship");
+        }
+
+    }
+
 }

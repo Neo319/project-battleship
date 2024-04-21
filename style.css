@@ -55,6 +55,10 @@ body {
     background-color: lightgray;
 }
 
+.cell.ship {
+    background-color: blue;
+}
+
 .cell:hover {
     filter: brightness(70%);
 }
