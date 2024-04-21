@@ -73,8 +73,8 @@ const gameManager = function () {
         }
 
         console.log("turn over")
-        
-        
+        doPlayerTurn()
+
     }
 
     async function _playerInput() {
@@ -84,11 +84,15 @@ const gameManager = function () {
         
 
         return new Promise((resolve, reject) => {
+            
+            let playerHasMoved = false;
+
+            //add event listeners 
             cpuBoard.addEventListener("click", handleClick);
 
             function handleClick(event) {
                 
-    
+                if (!playerHasMoved) {
                     const x = event.target.id.charAt(7);
                     const y = event.target.id.charAt(10);
     
@@ -96,35 +100,18 @@ const gameManager = function () {
                     if (!(cpu.board.board[x][y] === 2) &&
                         !(cpu.board.board[x][y] === 3) ) {
                             resolve({x: x, y: y}) //resolve promise
-
+                            playerHasMoved = true;
                             cpuBoard.removeEventListener("click", handleClick)
                         }
-    
-                
+                }
+                    
             }
-
-
-
-
-
-
-
-            // for (let cell of cpuBoardCells) {
-            //     cell.addEventListener("click", () => {
-            //         // DOM cell id is used to represent inputted coord
-            //         const y = cell.id.charAt(10);
-            //         const x = cell.id.charAt(7);
-
-            //         //check that move is legal (not already played)
-
-            //         resolve ({x: x, y: y});
-            //     }
-            // );
-            // }
-
-
+            
         });
     }
+
+
+
 
     async function _generateCPUMove () {
         return new Promise ((resolve, reject) => {
@@ -147,11 +134,7 @@ const gameManager = function () {
     }
         
 
-    //primary game loop
-    for (let i = 0; i < 100; i++) { //limit to avoid crashing
-        doPlayerTurn();
-        
-    }
+    doPlayerTurn();
 
     
 
