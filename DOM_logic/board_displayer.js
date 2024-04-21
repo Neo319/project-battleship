@@ -1,4 +1,4 @@
-import turnController from "./turn_controller.js";
+
 
 //module responsible for displaying board content to DOM
 export default function boardDisplayer(type, location, playerObj) {
@@ -23,7 +23,7 @@ export default function boardDisplayer(type, location, playerObj) {
             displayBoardContent(cell, i, j);
 
             if (type === 2) { //cpu board
-                enablePlayerTurn(cell, i, j);
+                cell.classList.add ('cpu')
             }
 
 
@@ -70,13 +70,6 @@ export default function boardDisplayer(type, location, playerObj) {
         else if (cellData === 3) { //hit shots
             cell.classList.add("hit");
         }
-    }
-
-
-    function enablePlayerTurn (cell, i, j) {
-        cell.addEventListener("click", () => {
-            turnController(cell, i, j);
-        })
     }
 
 }

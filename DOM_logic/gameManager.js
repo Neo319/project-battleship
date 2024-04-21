@@ -32,6 +32,46 @@ const gameManager = function () {
     boardDisplayer(1, playerBoardAddress, player);
     boardDisplayer(2, cpuBoardAddress, cpu);
 
+    async function doPlayerTurn () {
+        //add event listeners to cpu board
+        _manageClickListeners(1);
+
+        //await player input (promise)
+
+        //play cell on cpu board
+
+        //update board
+        boardDisplayer(2, cpuBoardAddress, cpu);
+
+        //remove event listeners
+
+
+
+        //time out -> generate cpu move (promise)
+
+        //play cell on player board
+        
+        //see if game is over
+
+
+        //update board
+        boardDisplayer(1, playerBoardAddress, player);
+        
+    }
+
+    function _manageClickListeners(mode) {
+        //mode = 1 : enable listeners
+        //mode = 2 : disable listeners
+
+        //retrieve cpu board cells
+        const cpuBoardCells = Array.from(document.getElementsByClassName ("cpu"));
+
+        for (let cell of cpuBoardCells) {
+            console.log(cell)
+        }
+    }
+
+    doPlayerTurn();
 
 }
 
