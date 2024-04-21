@@ -52,12 +52,14 @@ const gameManager = function () {
         //time out -> generate cpu move (promise)
         console.log("cpu generating...")
         
+        
+        
         const response = await _generateCPUMove ();
         console.log("cpu plays:")
         console.log(response);
 
         //play cell on player board
-        
+        player.board.recieveAttack(response.x, response.y);
         //see if game is over
 
 
@@ -88,24 +90,21 @@ const gameManager = function () {
 
     async function _generateCPUMove () {
         return new Promise ((resolve, reject) => {
-            for (let i = 0; i < 100; i++) { //100 attempts
+            //wait two seconds
+            setTimeout(() => {
+                for (let i = 0; i < 100; i++) { //100 attempts
 
-
-                let x = (Math.floor(Math.random() * 10)); //0 - 9
-                let y = (Math.floor(Math.random() * 10)); //0 - 9
-
-
-                console.log(player.board.board[x][y])
-
-                //check that move is legal
-                if (!(player.board.board[x][y] === 2) &&
-                    !(player.board.board[x][y] === 3)) {
-                        resolve ({x: x, y: y});
-                        break;
+                    let x = (Math.floor(Math.random() * 10)); //0 - 9
+                    let y = (Math.floor(Math.random() * 10)); //0 - 9
+    
+                    //check that move is legal
+                    if (!(player.board.board[x][y] === 2) &&
+                        !(player.board.board[x][y] === 3)) {
+                            resolve ({x: x, y: y});
+                            break; //end the loop if move can be made
+                    }
                 }
-
-
-            }
+            }, 2000); // 2 second wait 
         });
     }
         
