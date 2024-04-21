@@ -29,7 +29,7 @@ body {
 }
 
 
-#ships, #buttons {
+#buttons {
     border: 1px solid black;
     width: 80vw;
     height: 10vh;

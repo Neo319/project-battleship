@@ -1,5 +1,6 @@
 import Player from "../game_logic/player.js";
 import boardDisplayer from "./board_displayer.js";
+import layoutGenerator from "./layout_generation.js";
 
 const gameManager = function () {
     console.log("foo");
@@ -70,6 +71,7 @@ const gameManager = function () {
 
         //check if game is over
         if (player.board.allShipsSunk) {
+            console.log("player all ships sunk");
             return "CPU" //CPU wins
         }
 
@@ -135,8 +137,16 @@ const gameManager = function () {
     }
         
 
-    doPlayerTurn();
+    //where the game is finally initiated
 
+    // doPlayerTurn();
+
+
+
+    //testing
+
+    console.log(layoutGenerator(player));
+    boardDisplayer(1, playerBoardAddress, player);
     
 
 }
