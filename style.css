@@ -28,11 +28,11 @@ body {
 
 }
 
-/* used to retain square shape; here is where grids are contained */
-/* #playerBoard, #cpuBoard {
-    display:block;
-    padding-bottom:100%;
 
-    
-
-} */
+#ships, #buttons {
+    border: 1px solid black;
+    width: 80vw;
+    height: 10vh;
+    margin-left: 10vw;
+    margin-right:10vw;
+}
