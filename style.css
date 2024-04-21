@@ -3,27 +3,36 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+/* flex container for board display elements */
 #boards {
     border: 1px solid red;
     width: 100%;
-    height: 60vh;
+    height: 90vh;
 
     display: flex;
     flex-flow: column;
     gap: 5vh;
 
-
+    align-items: center;
 
 
 
 }
 
+/* board dispaly divs */
 #playerBoard, #cpuBoard {
     border: 1px solid black;
-    width: 90vw;
-
-
-
+    width: 40vh;
+    height: 40vh;
 
 
 }
+
+/* used to retain square shape; here is where grids are contained */
+/* #playerBoard, #cpuBoard {
+    display:block;
+    padding-bottom:100%;
+
+    
+
+} */
