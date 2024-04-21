@@ -16,7 +16,7 @@ body {
     align-items: center;
 
 
-
+    padding-bottom: 35px;
 }
 
 /* board dispaly divs */
@@ -52,6 +52,20 @@ body {
     height: auto;
     width: 10%;
     
+    background-color: lightgray;
+}
+
+.cell:hover {
+    filter: brightness(70%);
+}
 
 
+
+
+/* Player highlight info displayer */
+#highlightMessage {
+    color: gray;
+    font-style: italic;
+
+    height: 20px;
 }

@@ -29,7 +29,8 @@ const gameManager = function () {
     _initialLayout(player);
     _initialLayout(cpu);
 
-    boardDisplayer(1, playerBoardAddress)
+    boardDisplayer(1, playerBoardAddress);
+    boardDisplayer(2, cpuBoardAddress);
 
 
 }
