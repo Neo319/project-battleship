@@ -4,7 +4,7 @@ import layoutGenerator from "./layout_generation.js";
 
 //module in charge of command buttons
 
-export default function commandButtons (button, player) {
+export default function commandButtons (button, player, cpu) {
     //"button" shows which button was clicked
     //"player" is used to pass the player object here
 

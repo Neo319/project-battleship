@@ -11,15 +11,25 @@ const start = document.getElementById('start')
 const reset = document.getElementById('reset')
 const layout = document.getElementById('layout');
 
+reset.classList = "inactive";
+
 //add event listeners for command buttons 
 start.addEventListener('click', () => {
-    commandButtons("start")
+    commandButtons("start", player, cpu)
+    layout.classList = "inactive"
+    start.classList = "inactive"
+    reset.classList = ''
 });
 reset.addEventListener('click', () => {
-    commandButtons("reset")
+    commandButtons("reset");
+    layout.classList = ''; //active again
+    start.classList = '';
 });
 layout.addEventListener('click', () => {
-    commandButtons('layout', player)
+    if (!(layout.classList.contains("inactive"))) {
+        commandButtons('layout', player, cpu);
+    }
+    
 });
 
 //give player initial layout

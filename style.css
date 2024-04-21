@@ -80,3 +80,9 @@ body {
 
     height: 20px;
 }
+
+
+/* inactive buttons styling */ 
+.inactive {
+    filter: brightness(70%);
+}
