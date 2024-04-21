@@ -54,14 +54,21 @@ body {
     
     background-color: lightgray;
 }
+.cell:hover {
+    filter: brightness(70%);
+}
 
 .cell.ship {
     background-color: blue;
 }
-
-.cell:hover {
-    filter: brightness(70%);
+.cell.miss {
+    background-color: white;
 }
+.cell.hit {
+    background-color:red;
+}
+
+
 
 
 

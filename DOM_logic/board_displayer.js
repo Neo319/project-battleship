@@ -1,3 +1,5 @@
+import turnController from "./turn_controller.js";
+
 //module responsible for displaying board content to DOM
 export default function boardDisplayer(type, location, playerObj) {
     //board can be of type 'player' or 'cpu', 
@@ -19,6 +21,10 @@ export default function boardDisplayer(type, location, playerObj) {
             //do stuff on individual cells
             addMessageListener(cell, i, j);
             displayBoardContent(cell, i, j);
+
+            if (type === 2) { //cpu board
+                enablePlayerTurn(cell, i, j);
+            }
 
 
             row.appendChild(cell, i, j)
@@ -49,15 +55,28 @@ export default function boardDisplayer(type, location, playerObj) {
     function displayBoardContent (cell, i, j) {
         //this function runs on each cell and updates classList 
         //to reflect the content of the gameboard
-
         //data of cell at player's board
         const cellData = playerObj.board.board[i][j];
 
-        //ship
-        if (cellData === 1) {
-            cell.classList.add("ship");
+        if (type === 1) { // player board only
+            if (cellData === 1) { //friendly ship location
+                cell.classList.add("ship");
+            }
         }
 
+        if (cellData === 2) { //missed shots
+            cell.classList.add("miss");
+        }
+        else if (cellData === 3) { //hit shots
+            cell.classList.add("hit");
+        }
+    }
+
+
+    function enablePlayerTurn (cell, i, j) {
+        cell.addEventListener("click", () => {
+            turnController(cell, i, j);
+        })
     }
 
 }
