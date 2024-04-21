@@ -45,11 +45,16 @@ const gameManager = function () {
         //update board
         boardDisplayer(2, cpuBoardAddress, cpu);
 
-        //remove event listeners
+        //remove event listeners (done by garbage collection)
 
 
 
         //time out -> generate cpu move (promise)
+        console.log("cpu generating...")
+        
+        const response = await _generateCPUMove ();
+        console.log("cpu plays:")
+        console.log(response);
 
         //play cell on player board
         
@@ -73,8 +78,33 @@ const gameManager = function () {
                     const y = cell.id.charAt(10);
                     const x = cell.id.charAt(7);
 
+                    //check that move is legal (not already played)
+
                     resolve ({x: x, y: y});
                 });
+            }
+        });
+    }
+
+    async function _generateCPUMove () {
+        return new Promise ((resolve, reject) => {
+            for (let i = 0; i < 100; i++) { //100 attempts
+
+
+                let x = (Math.floor(Math.random() * 10)); //0 - 9
+                let y = (Math.floor(Math.random() * 10)); //0 - 9
+
+
+                console.log(player.board.board[x][y])
+
+                //check that move is legal
+                if (!(player.board.board[x][y] === 2) &&
+                    !(player.board.board[x][y] === 3)) {
+                        resolve ({x: x, y: y});
+                        break;
+                }
+
+
             }
         });
     }
