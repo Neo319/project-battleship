@@ -35,7 +35,21 @@ body {
     height: 10vh;
     margin-left: 10vw;
     margin-right:10vw;
+
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
+
+#buttons * {
+    padding: 0.6em;
+}
+#buttons *.active:hover {
+    filter:brightness(70%);
+}
+
 
 
 /* control of individual cells  */
@@ -84,5 +98,5 @@ body {
 
 /* inactive buttons styling */ 
 .inactive {
-    filter: brightness(70%);
+    filter: brightness(20%);
 }
