@@ -33,12 +33,14 @@ const gameManager = function () {
     boardDisplayer(2, cpuBoardAddress, cpu);
 
     async function doPlayerTurn () {
-        //add event listeners to cpu board
-        _manageClickListeners(1);
-
+        //add event listeners to cpu board +
         //await player input (promise)
+        const playerInput = await _playerInput();
+        console.log(Number(playerInput.x), Number(playerInput.y));
 
         //play cell on cpu board
+        cpu.board.recieveAttack(Number(playerInput.x), Number(playerInput.y));
+
 
         //update board
         boardDisplayer(2, cpuBoardAddress, cpu);
@@ -59,17 +61,24 @@ const gameManager = function () {
         
     }
 
-    function _manageClickListeners(mode) {
-        //mode = 1 : enable listeners
-        //mode = 2 : disable listeners
+    async function _playerInput() {
 
         //retrieve cpu board cells
         const cpuBoardCells = Array.from(document.getElementsByClassName ("cpu"));
 
-        for (let cell of cpuBoardCells) {
-            console.log(cell)
-        }
+        return new Promise((resolve, reject) => {
+            for (let cell of cpuBoardCells) {
+                cell.addEventListener("click", () => {
+                    // DOM cell id is used to represent inputted coord
+                    const y = cell.id.charAt(10);
+                    const x = cell.id.charAt(7);
+
+                    resolve ({x: x, y: y});
+                });
+            }
+        });
     }
+        
 
     doPlayerTurn();
 
