@@ -32,6 +32,7 @@ const gameManager = function () {
     boardDisplayer(1, playerBoardAddress, player);
     boardDisplayer(2, cpuBoardAddress, cpu);
 
+    // ----------- PRIMARY GAME DRIVER FUNCTION -----------
     async function doPlayerTurn () {
         //add event listeners to cpu board +
         //await player input (promise)
@@ -45,8 +46,10 @@ const gameManager = function () {
         //update board
         boardDisplayer(2, cpuBoardAddress, cpu);
 
-        //remove event listeners (done by garbage collection)
-
+        //check if game is over
+        if (cpu.board.allShipsSunk) {
+            return "Player" //player wins
+        }
 
 
         //time out -> generate cpu move (promise)
@@ -60,31 +63,66 @@ const gameManager = function () {
 
         //play cell on player board
         player.board.recieveAttack(response.x, response.y);
-        //see if game is over
-
 
         //update board
         boardDisplayer(1, playerBoardAddress, player);
+
+        //check if game is over
+        if (player.board.allShipsSunk) {
+            return "CPU" //CPU wins
+        }
+
+        console.log("turn over")
+        
         
     }
 
     async function _playerInput() {
 
-        //retrieve cpu board cells
-        const cpuBoardCells = Array.from(document.getElementsByClassName ("cpu"));
+        //retrieve cpu board 
+        const cpuBoard = document.getElementById("cpuBoard");
+        
 
         return new Promise((resolve, reject) => {
-            for (let cell of cpuBoardCells) {
-                cell.addEventListener("click", () => {
-                    // DOM cell id is used to represent inputted coord
-                    const y = cell.id.charAt(10);
-                    const x = cell.id.charAt(7);
+            cpuBoard.addEventListener("click", handleClick);
 
-                    //check that move is legal (not already played)
+            function handleClick(event) {
+                
+    
+                    const x = event.target.id.charAt(7);
+                    const y = event.target.id.charAt(10);
+    
+                    //check that the move is legal (not already played)
+                    if (!(cpu.board.board[x][y] === 2) &&
+                        !(cpu.board.board[x][y] === 3) ) {
+                            resolve({x: x, y: y}) //resolve promise
 
-                    resolve ({x: x, y: y});
-                });
+                            cpuBoard.removeEventListener("click", handleClick)
+                        }
+    
+                
             }
+
+
+
+
+
+
+
+            // for (let cell of cpuBoardCells) {
+            //     cell.addEventListener("click", () => {
+            //         // DOM cell id is used to represent inputted coord
+            //         const y = cell.id.charAt(10);
+            //         const x = cell.id.charAt(7);
+
+            //         //check that move is legal (not already played)
+
+            //         resolve ({x: x, y: y});
+            //     }
+            // );
+            // }
+
+
         });
     }
 
@@ -109,7 +147,13 @@ const gameManager = function () {
     }
         
 
-    doPlayerTurn();
+    //primary game loop
+    for (let i = 0; i < 100; i++) { //limit to avoid crashing
+        doPlayerTurn();
+        
+    }
+
+    
 
 }
 
