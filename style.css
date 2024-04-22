@@ -4,6 +4,14 @@ body {
     background-color: #f1f2f3
 }
 
+header {
+background-color: black;
+color: white;
+
+padding: 3em;
+margin-bottom: 3em;
+}
+
 /* flex container for board display elements */
 #boards {
     width: 100%;
@@ -12,7 +20,7 @@ body {
 
     display: flex;
     flex-flow: column;
-    gap: 5vh;
+    gap: 5px;
 
     align-items: center;
 
@@ -94,7 +102,7 @@ body {
     color: gray;
     font-style: italic;
 
-    height: 20px;
+    height: 1em;
 }
 
 
